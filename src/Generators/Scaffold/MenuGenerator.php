@@ -1,10 +1,10 @@
 <?php
 
-namespace InfyOm\Generator\Generators\Scaffold;
+namespace Larabra\Generator\Generators\Scaffold;
 
 use Illuminate\Support\Str;
-use InfyOm\Generator\Common\CommandData;
-use InfyOm\Generator\Generators\BaseGenerator;
+use Larabra\Generator\Common\CommandData;
+use Larabra\Generator\Generators\BaseGenerator;
 
 class MenuGenerator extends BaseGenerator
 {
@@ -27,12 +27,12 @@ class MenuGenerator extends BaseGenerator
     {
         $this->commandData = $commandData;
         $this->path = config(
-            'infyom.laravel_generator.path.views',
+            'larabra.laravel_generator.path.views',
             resource_path(
                 'views/'
             )
         ).$commandData->getAddOn('menu.menu_file');
-        $this->templateType = config('infyom.laravel_generator.templates', 'adminlte-templates');
+        $this->templateType = config('larabra.laravel_generator.templates', 'adminlte-laravel-generator');
 
         $this->menuContents = file_get_contents($this->path);
 

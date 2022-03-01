@@ -1,8 +1,8 @@
 <?php
 
-namespace InfyOm\Generator\Generators;
+namespace Larabra\Generator\Generators;
 
-use InfyOm\Generator\Common\GeneratorField;
+use Larabra\Generator\Common\GeneratorField;
 
 class SwaggerGenerator
 {

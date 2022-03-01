@@ -1,10 +1,10 @@
 <?php
 
-namespace InfyOm\Generator\Generators\Scaffold;
+namespace Larabra\Generator\Generators\Scaffold;
 
-use InfyOm\Generator\Common\CommandData;
-use InfyOm\Generator\Generators\BaseGenerator;
-use InfyOm\Generator\Utils\FileUtil;
+use Larabra\Generator\Common\CommandData;
+use Larabra\Generator\Generators\BaseGenerator;
+use Larabra\Generator\Utils\FileUtil;
 
 /**
  * Class JQueryDatatableAssetsGenerator.

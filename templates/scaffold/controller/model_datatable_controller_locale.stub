@@ -4,12 +4,13 @@ namespace $NAMESPACE_CONTROLLER$;
 
 use $NAMESPACE_DATATABLES$\$MODEL_NAME$DataTable;
 use $NAMESPACE_REQUEST$;
-use $NAMESPACE_REQUEST$\Create$MODEL_NAME$Request;
-use $NAMESPACE_REQUEST$\Update$MODEL_NAME$Request;
+use $NAMESPACE_REQUEST$\$MODEL_NAME$Request as Create$MODEL_NAME$Request;
+use $NAMESPACE_REQUEST$\$MODEL_NAME$Request as Update$MODEL_NAME$Request;
 use $NAMESPACE_MODEL$\$MODEL_NAME$;
-use Flash;
 use $NAMESPACE_APP$\Http\Controllers\AppBaseController;
-use Response;
+use Illuminate\Support\Facades\Response;
+use Laracasts\Flash\Flash;
+$JS_VALIDATOR_IMPORT$
 
 class $MODEL_NAME$Controller extends AppBaseController
 {
@@ -17,7 +18,6 @@ class $MODEL_NAME$Controller extends AppBaseController
      * Display a listing of the $MODEL_NAME$.
      *
      * @param $MODEL_NAME$DataTable $$MODEL_NAME_CAMEL$DataTable
-     *
      * @return Response
      */
     public function index($MODEL_NAME$DataTable $$MODEL_NAME_CAMEL$DataTable)
@@ -32,7 +32,9 @@ class $MODEL_NAME$Controller extends AppBaseController
      */
     public function create()
     {
-        return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.create');
+        return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.create', [
+            $JS_VALIDATOR_VAR$
+        ]);
     }
 
     /**
@@ -49,15 +51,15 @@ class $MODEL_NAME$Controller extends AppBaseController
         /** @var $MODEL_NAME$ $$MODEL_NAME_CAMEL$ */
         $$MODEL_NAME_CAMEL$ = $MODEL_NAME$::create($input);
 
-        Flash::success(__('messages.saved', ['model' => __('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
+        Flash::success(trans('messages.saved', ['model' => trans('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
 
-        return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+        return redirect()->route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index');
     }
 
     /**
      * Display the specified $MODEL_NAME$.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
@@ -67,18 +69,20 @@ class $MODEL_NAME$Controller extends AppBaseController
         $$MODEL_NAME_CAMEL$ = $MODEL_NAME$::find($id);
 
         if (empty($$MODEL_NAME_CAMEL$)) {
-            Flash::error(__('models/$MODEL_NAME_PLURAL_CAMEL$.singular').' '.__('messages.not_found'));
+            Flash::error(trans('models/$MODEL_NAME_PLURAL_CAMEL$.singular').' '.trans('messages.not_found'));
 
-            return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+            return redirect()->route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index');
         }
 
-        return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.show')->with('$MODEL_NAME_CAMEL$', $$MODEL_NAME_CAMEL$);
+        return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.show', [
+            '$MODEL_NAME_CAMEL$'=> $$MODEL_NAME_CAMEL$,
+        ]);
     }
 
     /**
      * Show the form for editing the specified $MODEL_NAME$.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @return Response
      */
@@ -88,18 +92,21 @@ class $MODEL_NAME$Controller extends AppBaseController
         $$MODEL_NAME_CAMEL$ = $MODEL_NAME$::find($id);
 
         if (empty($$MODEL_NAME_CAMEL$)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
+            Flash::error(trans('messages.not_found', ['model' => trans('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
 
-            return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+            return redirect()->route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index');
         }
 
-        return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.edit')->with('$MODEL_NAME_CAMEL$', $$MODEL_NAME_CAMEL$);
+        return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.edit', [
+            $JS_VALIDATOR_VAR$
+            '$MODEL_NAME_CAMEL$'=> $$MODEL_NAME_CAMEL$,
+        ]);
     }
 
     /**
      * Update the specified $MODEL_NAME$ in storage.
      *
-     * @param int $id
+     * @param  int              $id
      * @param Update$MODEL_NAME$Request $request
      *
      * @return Response
@@ -110,23 +117,23 @@ class $MODEL_NAME$Controller extends AppBaseController
         $$MODEL_NAME_CAMEL$ = $MODEL_NAME$::find($id);
 
         if (empty($$MODEL_NAME_CAMEL$)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
+            Flash::error(trans('messages.not_found', ['model' => trans('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
 
-            return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+            return redirect()->route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index');
         }
 
         $$MODEL_NAME_CAMEL$->fill($request->all());
         $$MODEL_NAME_CAMEL$->save();
 
-        Flash::success(__('messages.updated', ['model' => __('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
+        Flash::success(trans('messages.updated', ['model' => trans('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
 
-        return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+        return redirect()->route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index');
     }
 
     /**
      * Remove the specified $MODEL_NAME$ from storage.
      *
-     * @param int $id
+     * @param  int $id
      *
      * @throws \Exception
      *
@@ -138,15 +145,15 @@ class $MODEL_NAME$Controller extends AppBaseController
         $$MODEL_NAME_CAMEL$ = $MODEL_NAME$::find($id);
 
         if (empty($$MODEL_NAME_CAMEL$)) {
-            Flash::error(__('messages.not_found', ['model' => __('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
+            Flash::error(trans('messages.not_found', ['model' => trans('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
 
-            return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+            return redirect()->route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index');
         }
 
         $$MODEL_NAME_CAMEL$->delete();
 
-        Flash::success(__('messages.deleted', ['model' => __('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
+        Flash::success(trans('messages.deleted', ['model' => trans('models/$MODEL_NAME_PLURAL_CAMEL$.singular')]));
 
-        return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+        return redirect()->route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index');
     }
 }

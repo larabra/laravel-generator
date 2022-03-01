@@ -1,10 +1,10 @@
 <?php
 
-namespace InfyOm\Generator\Generators\API;
+namespace Larabra\Generator\Generators\API;
 
-use InfyOm\Generator\Common\CommandData;
-use InfyOm\Generator\Generators\BaseGenerator;
-use InfyOm\Generator\Utils\FileUtil;
+use Larabra\Generator\Common\CommandData;
+use Larabra\Generator\Generators\BaseGenerator;
+use Larabra\Generator\Utils\FileUtil;
 
 class APIControllerGenerator extends BaseGenerator
 {
@@ -21,7 +21,7 @@ class APIControllerGenerator extends BaseGenerator
     {
         $this->commandData = $commandData;
         $this->path = $commandData->config->pathApiController;
-        $this->fileName = $this->commandData->modelName.'APIController.php';
+        $this->fileName = $this->commandData->modelName.'ApiController.php';
     }
 
     public function generate()

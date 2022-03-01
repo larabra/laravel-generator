@@ -1,11 +1,11 @@
 <?php
 
-namespace InfyOm\Generator\Request;
+namespace Larabra\Generator\Request;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Arr;
-use InfyOm\Generator\Utils\ResponseUtil;
-use Response;
+use Larabra\Generator\Utils\ResponseUtil;
+use Illuminate\Support\Facades\Response;
 
 class APIRequest extends FormRequest
 {

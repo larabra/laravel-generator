@@ -7,8 +7,9 @@ use $NAMESPACE_REQUEST$\UpdateUserRequest;
 use $NAMESPACE_REPOSITORY$\UserRepository;
 use $NAMESPACE_CONTROLLER$\AppBaseController;
 use Illuminate\Http\Request;
-use Flash;
-use Response;
+use Laracasts\Flash\Flash;
+$JS_VALIDATOR_IMPORT$
+use Illuminate\Support\Facades\Response;
 use Hash;
 
 class UserController extends AppBaseController

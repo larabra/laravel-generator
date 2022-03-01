@@ -1,0 +1,9 @@
+<?php
+
+return [
+    "singular" => "$MODEL_NAME$",
+    "plural" => "$MODEL_NAME_PLURAL$",
+    "fields" => [
+        $LOCALE_FIELDS$
+    ]
+];

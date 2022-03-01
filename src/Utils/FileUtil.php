@@ -1,6 +1,6 @@
 <?php
 
-namespace InfyOm\Generator\Utils;
+namespace Larabra\Generator\Utils;
 
 class FileUtil
 {

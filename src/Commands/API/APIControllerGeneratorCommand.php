@@ -1,10 +1,10 @@
 <?php
 
-namespace InfyOm\Generator\Commands\API;
+namespace Larabra\Generator\Commands\API;
 
-use InfyOm\Generator\Commands\BaseCommand;
-use InfyOm\Generator\Common\CommandData;
-use InfyOm\Generator\Generators\API\APIControllerGenerator;
+use Larabra\Generator\Commands\BaseCommand;
+use Larabra\Generator\Common\CommandData;
+use Larabra\Generator\Generators\API\APIControllerGenerator;
 
 class APIControllerGeneratorCommand extends BaseCommand
 {
@@ -13,7 +13,7 @@ class APIControllerGeneratorCommand extends BaseCommand
      *
      * @var string
      */
-    protected $name = 'infyom.api:controller';
+    protected $name = 'larabra.api:controller';
 
     /**
      * The console command description.

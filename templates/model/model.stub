@@ -3,6 +3,7 @@
 namespace $NAMESPACE_MODEL$;
 
 use $NAMESPACE_MODEL_EXTEND$ as Model;
+$FORM_ACCESSIBLE_IMPORT$
 $SOFT_DELETE_IMPORT$
 $HAS_FACTORY_IMPORT$
 
@@ -11,6 +12,13 @@ class $MODEL_NAME$ extends Model
 {
 $SOFT_DELETE$
 $HAS_FACTORY$
+$FORM_ACCESSIBLE$
+    
+    /*
+      |--------------------------------------------------------------------------
+      | GLOBAL VARIABLES
+      |--------------------------------------------------------------------------
+     */
     public $table = '$TABLE_NAME$';
     $TIMESTAMPS$
 $SOFT_DELETE_DATES$
@@ -29,14 +37,46 @@ $PRIMARY$
         $CAST$
     ];
 
-    /**
-     * Validation rules
-     *
-     * @var array
+    /*
+      |--------------------------------------------------------------------------
+      | RELATIONS
+      | https://laravel.com/docs/8.x/eloquent-relationships
+      |--------------------------------------------------------------------------
      */
-    public static $rules = [
-        $RULES$
-    ];
-
     $RELATIONS$
+     
+    /*
+      |--------------------------------------------------------------------------
+      | FORMS (get form attribute)
+      | https://laravelcollective.com/docs/6.x/html#form-model-accessors
+      |--------------------------------------------------------------------------
+     */
+     
+    /*
+      |--------------------------------------------------------------------------
+      | ACCESORS (get attribute)
+      | https://laravel.com/docs/8.x/eloquent-mutators#defining-an-accessor
+      |--------------------------------------------------------------------------
+     */
+
+    /*
+      |--------------------------------------------------------------------------
+      | MUTATORS (set attribute)
+      | https://laravel.com/docs/8.x/eloquent-mutators#defining-a-mutator
+      |--------------------------------------------------------------------------
+     */
+
+    /*
+      |--------------------------------------------------------------------------
+      | SCOPES
+      | https://laravel.com/docs/8.x/eloquent#local-scopes
+      |--------------------------------------------------------------------------
+     */
+
+    /*
+      |--------------------------------------------------------------------------
+      | FUNCTIONS
+      |--------------------------------------------------------------------------
+     */
+    
 }

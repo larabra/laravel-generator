@@ -1,10 +1,10 @@
 <?php
 
-namespace InfyOm\Generator\Commands\Scaffold;
+namespace Larabra\Generator\Commands\Scaffold;
 
-use InfyOm\Generator\Commands\BaseCommand;
-use InfyOm\Generator\Common\CommandData;
-use InfyOm\Generator\Generators\Scaffold\ControllerGenerator;
+use Larabra\Generator\Commands\BaseCommand;
+use Larabra\Generator\Common\CommandData;
+use Larabra\Generator\Generators\Scaffold\ControllerGenerator;
 
 class ControllerGeneratorCommand extends BaseCommand
 {
@@ -13,7 +13,7 @@ class ControllerGeneratorCommand extends BaseCommand
      *
      * @var string
      */
-    protected $name = 'infyom.scaffold:controller';
+    protected $name = 'larabra.scaffold:controller';
 
     /**
      * The console command description.

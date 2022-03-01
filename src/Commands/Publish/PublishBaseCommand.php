@@ -1,9 +1,9 @@
 <?php
 
-namespace InfyOm\Generator\Commands\Publish;
+namespace Larabra\Generator\Commands\Publish;
 
 use File;
-use InfyOm\Generator\Commands\BaseCommand;
+use Larabra\Generator\Commands\BaseCommand;
 
 class PublishBaseCommand extends BaseCommand
 {

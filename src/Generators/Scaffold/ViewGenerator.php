@@ -1,14 +1,14 @@
 <?php
 
-namespace InfyOm\Generator\Generators\Scaffold;
+namespace Larabra\Generator\Generators\Scaffold;
 
 use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use InfyOm\Generator\Common\CommandData;
-use InfyOm\Generator\Generators\BaseGenerator;
-use InfyOm\Generator\Generators\ViewServiceProviderGenerator;
-use InfyOm\Generator\Utils\FileUtil;
-use InfyOm\Generator\Utils\HTMLFieldGenerator;
+use Larabra\Generator\Common\CommandData;
+use Larabra\Generator\Generators\BaseGenerator;
+use Larabra\Generator\Generators\ViewServiceProviderGenerator;
+use Larabra\Generator\Utils\FileUtil;
+use Larabra\Generator\Utils\HTMLFieldGenerator;
 
 class ViewGenerator extends BaseGenerator
 {
@@ -28,7 +28,7 @@ class ViewGenerator extends BaseGenerator
     {
         $this->commandData = $commandData;
         $this->path = $commandData->config->pathViews;
-        $this->templateType = config('infyom.laravel_generator.templates', 'adminlte-templates');
+        $this->templateType = config('larabra.laravel_generator.templates', 'adminlte-laravel-generator');
     }
 
     public function generate()
@@ -364,6 +364,27 @@ class ViewGenerator extends BaseGenerator
         return $fieldTemplate;
     }
 
+    private function fillJsValidator($templateData)
+    {
+        if (class_exists(\Proengsoft\JsValidation\Facades\JsValidatorFacade::class)) {
+            $templateData = str_replace(
+                '$JS_VALIDATOR_SCRIPT$',
+                implode(PHP_EOL, [
+                    '@push("third_party_scripts")',
+                    infy_tab(4 * 4).'<script type="text/javascript" src="{{ asset(\'vendor/jsvalidation/js/jsvalidation.js\')}}"></script>',
+                    infy_tab(4 * 4).'{!! $validator !!}',
+                    infy_tab(4 * 3).'@endpush',
+                ]),
+                $templateData
+            );
+        }
+        else{
+            $templateData = str_replace('$JS_VALIDATOR_SCRIPT$'.PHP_EOL, '', $templateData);
+        }
+
+        return $templateData;
+    }
+
     private function generateCreate()
     {
         $templateName = 'create';
@@ -373,6 +394,8 @@ class ViewGenerator extends BaseGenerator
         }
 
         $templateData = get_template('scaffold.views.'.$templateName, $this->templateType);
+
+        $templateData = $this->fillJsValidator($templateData);
 
         $templateData = fill_template($this->commandData->dynamicVars, $templateData);
 
@@ -389,6 +412,8 @@ class ViewGenerator extends BaseGenerator
         }
 
         $templateData = get_template('scaffold.views.'.$templateName, $this->templateType);
+
+        $templateData = $this->fillJsValidator($templateData);
 
         $templateData = fill_template($this->commandData->dynamicVars, $templateData);
 

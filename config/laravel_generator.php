@@ -25,17 +25,17 @@ return [
 
         'request'           => app_path('Http/Requests/'),
 
-        'api_request'       => app_path('Http/Requests/API/'),
+        'api_request'       => app_path('Http/Requests/Api/'),
 
         'controller'        => app_path('Http/Controllers/'),
 
-        'api_controller'    => app_path('Http/Controllers/API/'),
+        'api_controller'    => app_path('Http/Controllers/Api/'),
 
         'api_resource'      => app_path('Http/Resources/'),
 
         'repository_test'   => base_path('tests/Repositories/'),
 
-        'api_test'          => base_path('tests/APIs/'),
+        'api_test'          => base_path('tests/Apis/'),
 
         'tests'             => base_path('tests/'),
 
@@ -43,7 +43,7 @@ return [
 
         'schema_files'      => resource_path('model_schemas/'),
 
-        'templates_dir'     => resource_path('infyom/infyom-generator-templates/'),
+        'templates_dir'     => resource_path('larabra/larabra-generator-templates/'),
 
         'seeder'            => database_path('seeders/'),
 
@@ -71,13 +71,13 @@ return [
 
         'controller'        => 'App\Http\Controllers',
 
-        'api_controller'    => 'App\Http\Controllers\API',
+        'api_controller'    => 'App\Http\Controllers\Api',
 
         'api_resource'      => 'App\Http\Resources',
 
         'request'           => 'App\Http\Requests',
 
-        'api_request'       => 'App\Http\Requests\API',
+        'api_request'       => 'App\Http\Requests\Api',
 
         'seeder'            => 'Database\Seeders',
 
@@ -85,7 +85,7 @@ return [
 
         'repository_test'   => 'Tests\Repositories',
 
-        'api_test'          => 'Tests\APIs',
+        'api_test'          => 'Tests\Apis',
 
         'tests'             => 'Tests',
     ],
@@ -97,7 +97,7 @@ return [
     |
     */
 
-    'templates'         => 'adminlte-templates',
+    'templates'         => 'adminlte-laravel-generator',
 
     /*
     |--------------------------------------------------------------------------
@@ -106,11 +106,11 @@ return [
     |
     */
 
-    'model_extend_class' => 'Eloquent',
+    'model_extend_class' => \Illuminate\Database\Eloquent\Model::class,
 
     /*
     |--------------------------------------------------------------------------
-    | API routes prefix & version
+    | Api routes prefix & version
     |--------------------------------------------------------------------------
     |
     */
@@ -132,7 +132,7 @@ return [
 
         'save_schema_file' => true,
 
-        'localized' => false,
+        'localized' => true,
 
         'tables_searchable_default' => false,
 
@@ -174,7 +174,7 @@ return [
 
         'tests'         => true,
 
-        'datatables'    => false,
+        'datatables'    => true,
 
         'menu'          => [
 

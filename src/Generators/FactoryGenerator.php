@@ -1,10 +1,10 @@
 <?php
 
-namespace InfyOm\Generator\Generators;
+namespace Larabra\Generator\Generators;
 
-use InfyOm\Generator\Common\CommandData;
-use InfyOm\Generator\Utils\FileUtil;
-use InfyOm\Generator\Utils\GeneratorFieldsInputUtil;
+use Larabra\Generator\Common\CommandData;
+use Larabra\Generator\Utils\FileUtil;
+use Larabra\Generator\Utils\GeneratorFieldsInputUtil;
 
 /**
  * Class FactoryGenerator.

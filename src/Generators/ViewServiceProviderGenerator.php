@@ -1,9 +1,9 @@
 <?php
 
-namespace InfyOm\Generator\Generators;
+namespace Larabra\Generator\Generators;
 
 use File;
-use InfyOm\Generator\Common\CommandData;
+use Larabra\Generator\Common\CommandData;
 
 /**
  * Class ViewServiceProviderGenerator.

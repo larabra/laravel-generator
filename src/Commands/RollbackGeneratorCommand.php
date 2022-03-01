@@ -1,24 +1,24 @@
 <?php
 
-namespace InfyOm\Generator\Commands;
+namespace Larabra\Generator\Commands;
 
 use Illuminate\Console\Command;
-use InfyOm\Generator\Common\CommandData;
-use InfyOm\Generator\Generators\API\APIControllerGenerator;
-use InfyOm\Generator\Generators\API\APIRequestGenerator;
-use InfyOm\Generator\Generators\API\APIRoutesGenerator;
-use InfyOm\Generator\Generators\API\APITestGenerator;
-use InfyOm\Generator\Generators\FactoryGenerator;
-use InfyOm\Generator\Generators\MigrationGenerator;
-use InfyOm\Generator\Generators\ModelGenerator;
-use InfyOm\Generator\Generators\RepositoryGenerator;
-use InfyOm\Generator\Generators\RepositoryTestGenerator;
-use InfyOm\Generator\Generators\Scaffold\ControllerGenerator;
-use InfyOm\Generator\Generators\Scaffold\MenuGenerator;
-use InfyOm\Generator\Generators\Scaffold\RequestGenerator;
-use InfyOm\Generator\Generators\Scaffold\RoutesGenerator;
-use InfyOm\Generator\Generators\Scaffold\ViewGenerator;
-use InfyOm\Generator\Utils\FileUtil;
+use Larabra\Generator\Common\CommandData;
+use Larabra\Generator\Generators\API\APIControllerGenerator;
+use Larabra\Generator\Generators\API\APIRequestGenerator;
+use Larabra\Generator\Generators\API\APIRoutesGenerator;
+use Larabra\Generator\Generators\API\APITestGenerator;
+use Larabra\Generator\Generators\FactoryGenerator;
+use Larabra\Generator\Generators\MigrationGenerator;
+use Larabra\Generator\Generators\ModelGenerator;
+use Larabra\Generator\Generators\RepositoryGenerator;
+use Larabra\Generator\Generators\RepositoryTestGenerator;
+use Larabra\Generator\Generators\Scaffold\ControllerGenerator;
+use Larabra\Generator\Generators\Scaffold\MenuGenerator;
+use Larabra\Generator\Generators\Scaffold\RequestGenerator;
+use Larabra\Generator\Generators\Scaffold\RoutesGenerator;
+use Larabra\Generator\Generators\Scaffold\ViewGenerator;
+use Larabra\Generator\Utils\FileUtil;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -35,7 +35,7 @@ class RollbackGeneratorCommand extends Command
      *
      * @var string
      */
-    protected $name = 'infyom:rollback';
+    protected $name = 'larabra:rollback';
     /**
      * The console command description.
      *

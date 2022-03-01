@@ -1,6 +1,6 @@
 <?php
 
-namespace InfyOm\Generator\Contracts;
+namespace Larabra\Generator\Contracts;
 
 interface TemplatesPublisherContract
 {

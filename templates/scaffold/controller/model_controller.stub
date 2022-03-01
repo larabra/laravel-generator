@@ -2,13 +2,14 @@
 
 namespace $NAMESPACE_CONTROLLER$;
 
-use $NAMESPACE_REQUEST$\Create$MODEL_NAME$Request;
-use $NAMESPACE_REQUEST$\Update$MODEL_NAME$Request;
+use $NAMESPACE_REQUEST$\$MODEL_NAME$Request as Create$MODEL_NAME$Request;
+use $NAMESPACE_REQUEST$\$MODEL_NAME$Request as Update$MODEL_NAME$Request;
 use $NAMESPACE_APP$\Http\Controllers\AppBaseController;
 use $NAMESPACE_MODEL$\$MODEL_NAME$;
 use Illuminate\Http\Request;
-use Flash;
-use Response;
+use Laracasts\Flash\Flash;
+$JS_VALIDATOR_IMPORT$
+use Illuminate\Support\Facades\Response;
 
 class $MODEL_NAME$Controller extends AppBaseController
 {
@@ -24,8 +25,9 @@ class $MODEL_NAME$Controller extends AppBaseController
         /** @var $MODEL_NAME$ $$MODEL_NAME_PLURAL_CAMEL$ */
         $$MODEL_NAME_PLURAL_CAMEL$ = $MODEL_NAME$::$RENDER_TYPE$;
 
-        return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.index')
-            ->with('$MODEL_NAME_PLURAL_CAMEL$', $$MODEL_NAME_PLURAL_CAMEL$);
+        return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.index', [
+            '$MODEL_NAME_PLURAL_CAMEL$'=> $$MODEL_NAME_PLURAL_CAMEL$,
+        ]);
     }
 
     /**
@@ -35,7 +37,9 @@ class $MODEL_NAME$Controller extends AppBaseController
      */
     public function create()
     {
-        return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.create');
+        return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.create', [
+            $JS_VALIDATOR_VAR$
+        ]);
     }
 
     /**
@@ -54,7 +58,7 @@ class $MODEL_NAME$Controller extends AppBaseController
 
         Flash::success('$MODEL_NAME_HUMAN$ saved successfully.');
 
-        return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+        return redirect()->route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index');
     }
 
     /**
@@ -72,10 +76,12 @@ class $MODEL_NAME$Controller extends AppBaseController
         if (empty($$MODEL_NAME_CAMEL$)) {
             Flash::error('$MODEL_NAME_HUMAN$ not found');
 
-            return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+            return redirect()->route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index');
         }
 
-        return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.show')->with('$MODEL_NAME_CAMEL$', $$MODEL_NAME_CAMEL$);
+        return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.show', [
+            '$MODEL_NAME_CAMEL$'=> $$MODEL_NAME_CAMEL$,
+        ]);
     }
 
     /**
@@ -93,10 +99,13 @@ class $MODEL_NAME$Controller extends AppBaseController
         if (empty($$MODEL_NAME_CAMEL$)) {
             Flash::error('$MODEL_NAME_HUMAN$ not found');
 
-            return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+            return redirect()->route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index');
         }
 
-        return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.edit')->with('$MODEL_NAME_CAMEL$', $$MODEL_NAME_CAMEL$);
+        return view('$VIEW_PREFIX$$MODEL_NAME_PLURAL_SNAKE$.edit', [
+            $JS_VALIDATOR_VAR$
+            '$MODEL_NAME_CAMEL$'=> $$MODEL_NAME_CAMEL$,
+        ]);
     }
 
     /**
@@ -115,7 +124,7 @@ class $MODEL_NAME$Controller extends AppBaseController
         if (empty($$MODEL_NAME_CAMEL$)) {
             Flash::error('$MODEL_NAME_HUMAN$ not found');
 
-            return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+            return redirect()->route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index');
         }
 
         $$MODEL_NAME_CAMEL$->fill($request->all());
@@ -123,7 +132,7 @@ class $MODEL_NAME$Controller extends AppBaseController
 
         Flash::success('$MODEL_NAME_HUMAN$ updated successfully.');
 
-        return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+        return redirect()->route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index');
     }
 
     /**
@@ -143,13 +152,13 @@ class $MODEL_NAME$Controller extends AppBaseController
         if (empty($$MODEL_NAME_CAMEL$)) {
             Flash::error('$MODEL_NAME_HUMAN$ not found');
 
-            return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+            return redirect()->route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index');
         }
 
         $$MODEL_NAME_CAMEL$->delete();
 
         Flash::success('$MODEL_NAME_HUMAN$ deleted successfully.');
 
-        return redirect(route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index'));
+        return redirect()->route('$ROUTE_NAMED_PREFIX$$MODEL_NAME_PLURAL_CAMEL$.index');
     }
 }

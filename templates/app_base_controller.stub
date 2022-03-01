@@ -2,8 +2,8 @@
 
 namespace $NAMESPACE_APP$\Http\Controllers;
 
-use InfyOm\Generator\Utils\ResponseUtil;
-use Response;
+use Larabra\Generator\Utils\ResponseUtil;
+use Illuminate\Support\Facades\Response;
 
 /**
  * @SWG\Swagger(

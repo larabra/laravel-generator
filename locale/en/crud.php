@@ -2,6 +2,7 @@
 
 return [
 
+    'list'         => 'List',
     'add_new'      => 'Add New',
     'cancel'       => 'Cancel',
     'save'         => 'Save',

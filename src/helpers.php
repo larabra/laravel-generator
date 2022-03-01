@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Str;
-use InfyOm\Generator\Common\GeneratorField;
+use Larabra\Generator\Common\GeneratorField;
 
 if (!function_exists('infy_tab')) {
     /**
@@ -90,8 +90,8 @@ if (!function_exists('get_template_file_path')) {
         $templateName = str_replace('.', '/', $templateName);
 
         $templatesPath = config(
-            'infyom.laravel_generator.path.templates_dir',
-            resource_path('infyom/infyom-generator-templates/')
+            'larabra.laravel_generator.path.templates_dir',
+            resource_path('larabra/larabra-generator-templates/')
         );
 
         $path = $templatesPath.$templateName.'.stub';
@@ -115,7 +115,7 @@ if (!function_exists('get_templates_package_path')) {
     function get_templates_package_path($templateType)
     {
         if (strpos($templateType, '/') === false) {
-            $templateType = base_path('vendor/infyomlabs/').$templateType;
+            $templateType = base_path('vendor/larabra/').$templateType;
         }
 
         return $templateType;

@@ -4,7 +4,7 @@ namespace $NAMESPACE_APP$\Repositories;
 
 use Illuminate\Container\Container as Application;
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Str;
 
 abstract class BaseRepository
 {
@@ -90,7 +90,11 @@ abstract class BaseRepository
         if (count($search)) {
             foreach($search as $key => $value) {
                 if (in_array($key, $this->getFieldsSearchable())) {
-                    $query->where($key, $value);
+                    $query->where(
+                        $key, 
+                        Str::contains($value, '%') ? 'like' : '=',
+                        $value
+                    );
                 }
             }
         }

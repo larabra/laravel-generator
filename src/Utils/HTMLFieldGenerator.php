@@ -1,8 +1,8 @@
 <?php
 
-namespace InfyOm\Generator\Utils;
+namespace Larabra\Generator\Utils;
 
-use InfyOm\Generator\Common\GeneratorField;
+use Larabra\Generator\Common\GeneratorField;
 
 class HTMLFieldGenerator
 {

@@ -1,28 +1,28 @@
 <?php
 
-namespace InfyOm\Generator\Commands;
+namespace Larabra\Generator\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use InfyOm\Generator\Common\CommandData;
-use InfyOm\Generator\Generators\API\APIControllerGenerator;
-use InfyOm\Generator\Generators\API\APIRequestGenerator;
-use InfyOm\Generator\Generators\API\APIResourceGenerator;
-use InfyOm\Generator\Generators\API\APIRoutesGenerator;
-use InfyOm\Generator\Generators\API\APITestGenerator;
-use InfyOm\Generator\Generators\FactoryGenerator;
-use InfyOm\Generator\Generators\MigrationGenerator;
-use InfyOm\Generator\Generators\ModelGenerator;
-use InfyOm\Generator\Generators\RepositoryGenerator;
-use InfyOm\Generator\Generators\RepositoryTestGenerator;
-use InfyOm\Generator\Generators\Scaffold\ControllerGenerator;
-use InfyOm\Generator\Generators\Scaffold\JQueryDatatableAssetsGenerator;
-use InfyOm\Generator\Generators\Scaffold\MenuGenerator;
-use InfyOm\Generator\Generators\Scaffold\RequestGenerator;
-use InfyOm\Generator\Generators\Scaffold\RoutesGenerator;
-use InfyOm\Generator\Generators\Scaffold\ViewGenerator;
-use InfyOm\Generator\Generators\SeederGenerator;
-use InfyOm\Generator\Utils\FileUtil;
+use Larabra\Generator\Common\CommandData;
+use Larabra\Generator\Generators\API\APIControllerGenerator;
+use Larabra\Generator\Generators\API\APIRequestGenerator;
+use Larabra\Generator\Generators\API\APIResourceGenerator;
+use Larabra\Generator\Generators\API\APIRoutesGenerator;
+use Larabra\Generator\Generators\API\APITestGenerator;
+use Larabra\Generator\Generators\FactoryGenerator;
+use Larabra\Generator\Generators\MigrationGenerator;
+use Larabra\Generator\Generators\ModelGenerator;
+use Larabra\Generator\Generators\RepositoryGenerator;
+use Larabra\Generator\Generators\RepositoryTestGenerator;
+use Larabra\Generator\Generators\Scaffold\ControllerGenerator;
+use Larabra\Generator\Generators\Scaffold\JQueryDatatableAssetsGenerator;
+use Larabra\Generator\Generators\Scaffold\MenuGenerator;
+use Larabra\Generator\Generators\Scaffold\RequestGenerator;
+use Larabra\Generator\Generators\Scaffold\RoutesGenerator;
+use Larabra\Generator\Generators\Scaffold\ViewGenerator;
+use Larabra\Generator\Generators\SeederGenerator;
+use Larabra\Generator\Utils\FileUtil;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 
@@ -184,7 +184,7 @@ class BaseCommand extends Command
 
     public function runMigration()
     {
-        $migrationPath = config('infyom.laravel_generator.path.migration', database_path('migrations/'));
+        $migrationPath = config('larabra.laravel_generator.path.migration', database_path('migrations/'));
         $path = Str::after($migrationPath, base_path()); // get path after base_path
         $this->call('migrate', ['--path' => $path, '--force' => true]);
 
@@ -231,7 +231,7 @@ class BaseCommand extends Command
             ];
         }
 
-        $path = config('infyom.laravel_generator.path.schema_files', resource_path('model_schemas/'));
+        $path = config('larabra.laravel_generator.path.schema_files', resource_path('model_schemas/'));
 
         $fileName = $this->commandData->modelName.'.json';
 
@@ -245,25 +245,32 @@ class BaseCommand extends Command
 
     private function saveLocaleFile()
     {
-        $locales = [
-            'singular' => $this->commandData->modelName,
-            'plural'   => $this->commandData->config->mPlural,
-            'fields'   => [],
-        ];
-
+        $fields = [];
         foreach ($this->commandData->fields as $field) {
-            $locales['fields'][$field->name] = Str::title(str_replace('_', ' ', $field->name));
+            $key = $field->name;
+            $value = Str::title(str_replace('_', ' ', $field->name));
+            $fields[] = "\"$key\" => \"$value\"";
         }
+        $fields[] = '';
+        $fields = implode(','.infy_nl_tab(1, 2), $fields);
+        $this->commandData->addDynamicVariable('$LOCALE_FIELDS$', $fields);
 
-        $path = config('infyom.laravel_generator.path.models_locale_files', base_path('resources/lang/en/models/'));
+        $templateData = get_template('model_locale.model_locale', 'laravel-generator');
+
+        $templateData = fill_template($this->commandData->dynamicVars, $templateData);
 
         $fileName = $this->commandData->config->mCamelPlural.'.php';
 
-        if (file_exists($path.$fileName) && !$this->confirmOverwrite($fileName)) {
-            return;
+        $locales = array_unique([config('app.locale'),config('app.fallback_locale')]);
+        foreach($locales as $locale){
+            $path = config('larabra.laravel_generator.path.models_locale_files', base_path("resources/lang/$locale/models/"));
+
+            if (file_exists($path.$fileName) && !$this->confirmOverwrite($fileName)) {
+                return;
+            }
+            
+            FileUtil::createFile($path, $fileName, $templateData);
         }
-        $content = "<?php\n\nreturn ".var_export($locales, true).';'.\PHP_EOL;
-        FileUtil::createFile($path, $fileName, $content);
         $this->commandData->commandComment("\nModel Locale File saved: ");
         $this->commandData->commandInfo($fileName);
     }

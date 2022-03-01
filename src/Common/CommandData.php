@@ -1,17 +1,17 @@
 <?php
 
-namespace InfyOm\Generator\Common;
+namespace Larabra\Generator\Common;
 
 use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Support\Str;
-use InfyOm\Generator\Events\GeneratorFileCreated;
-use InfyOm\Generator\Events\GeneratorFileCreating;
-use InfyOm\Generator\Events\GeneratorFileDeleted;
-use InfyOm\Generator\Events\GeneratorFileDeleting;
-use InfyOm\Generator\Utils\FileUtil;
-use InfyOm\Generator\Utils\GeneratorFieldsInputUtil;
-use InfyOm\Generator\Utils\TableFieldsGenerator;
+use Larabra\Generator\Events\GeneratorFileCreated;
+use Larabra\Generator\Events\GeneratorFileCreating;
+use Larabra\Generator\Events\GeneratorFileDeleted;
+use Larabra\Generator\Events\GeneratorFileDeleting;
+use Larabra\Generator\Utils\FileUtil;
+use Larabra\Generator\Utils\GeneratorFieldsInputUtil;
+use Larabra\Generator\Utils\TableFieldsGenerator;
 
 class CommandData
 {
@@ -187,7 +187,7 @@ class CommandData
             }
         }
 
-        if (config('infyom.laravel_generator.timestamps.enabled', true)) {
+        if (config('larabra.laravel_generator.timestamps.enabled', true)) {
             $this->addTimestamps();
         }
     }
@@ -233,7 +233,7 @@ class CommandData
                     $filePath = base_path($fieldsFileValue);
                 } else {
                     $schemaFileDirector = config(
-                        'infyom.laravel_generator.path.schema_files',
+                        'larabra.laravel_generator.path.schema_files',
                         resource_path('model_schemas/')
                     );
                     $filePath = $schemaFileDirector.$fieldsFileValue;
@@ -302,12 +302,15 @@ class CommandData
         if (!empty($ignoredFields)) {
             $ignoredFields = explode(',', trim($ignoredFields));
         } else {
-            $ignoredFields = [];
+            $ignoredFields = config('larabra.laravel_generator.options.excluded_fields', []);
         }
 
         $tableFieldsGenerator = new TableFieldsGenerator($tableName, $ignoredFields, $this->config->connection);
         $tableFieldsGenerator->prepareFieldsFromTable();
         $tableFieldsGenerator->prepareRelations();
+
+        $this->ignoredFields = $ignoredFields;
+        $this->hiddenFields = $tableFieldsGenerator->hiddenFields;
 
         $this->fields = $tableFieldsGenerator->fields;
         $this->relations = $tableFieldsGenerator->relations;

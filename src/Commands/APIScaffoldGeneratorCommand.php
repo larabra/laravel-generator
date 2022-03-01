@@ -1,9 +1,9 @@
 <?php
 
-namespace InfyOm\Generator\Commands;
+namespace Larabra\Generator\Commands;
 
-use InfyOm\Generator\Common\CommandData;
-use InfyOm\Generator\Utils\FileUtil;
+use Larabra\Generator\Common\CommandData;
+use Larabra\Generator\Utils\FileUtil;
 
 class APIScaffoldGeneratorCommand extends BaseCommand
 {
@@ -12,7 +12,7 @@ class APIScaffoldGeneratorCommand extends BaseCommand
      *
      * @var string
      */
-    protected $name = 'infyom:api_scaffold';
+    protected $name = 'larabra:api_scaffold';
 
     /**
      * The console command description.

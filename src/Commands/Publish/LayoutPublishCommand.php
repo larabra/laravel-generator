@@ -1,9 +1,9 @@
 <?php
 
-namespace InfyOm\Generator\Commands\Publish;
+namespace Larabra\Generator\Commands\Publish;
 
 use Illuminate\Support\Str;
-use InfyOm\Generator\Utils\FileUtil;
+use Larabra\Generator\Utils\FileUtil;
 use Symfony\Component\Console\Input\InputOption;
 
 class LayoutPublishCommand extends PublishBaseCommand
@@ -13,7 +13,7 @@ class LayoutPublishCommand extends PublishBaseCommand
      *
      * @var string
      */
-    protected $name = 'infyom.publish:layout';
+    protected $name = 'larabra.publish:layout';
 
     /**
      * The console command description.
@@ -35,8 +35,8 @@ class LayoutPublishCommand extends PublishBaseCommand
 
     private function copyView()
     {
-        $viewsPath = config('infyom.laravel_generator.path.views', resource_path('views/'));
-        $templateType = config('infyom.laravel_generator.templates', 'adminlte-templates');
+        $viewsPath = config('larabra.laravel_generator.path.views', resource_path('views/'));
+        $templateType = config('larabra.laravel_generator.templates', 'adminlte-laravel-generator');
 
         $this->createDirectories($viewsPath);
 
@@ -118,7 +118,7 @@ class LayoutPublishCommand extends PublishBaseCommand
 
         $templateData = $this->fillTemplate($templateData);
 
-        $controllerPath = config('infyom.laravel_generator.path.controller', app_path('Http/Controllers/'));
+        $controllerPath = config('larabra.laravel_generator.path.controller', app_path('Http/Controllers/'));
 
         $fileName = 'HomeController.php';
 
@@ -142,13 +142,13 @@ class LayoutPublishCommand extends PublishBaseCommand
     {
         $templateData = str_replace(
             '$NAMESPACE_CONTROLLER$',
-            config('infyom.laravel_generator.namespace.controller'),
+            config('larabra.laravel_generator.namespace.controller'),
             $templateData
         );
 
         $templateData = str_replace(
             '$NAMESPACE_REQUEST$',
-            config('infyom.laravel_generator.namespace.request'),
+            config('larabra.laravel_generator.namespace.request'),
             $templateData
         );
 

@@ -10,10 +10,8 @@ class $MODEL_NAME$RepositoryTest extends TestCase
 {
     use ApiTestTrait, DatabaseTransactions;
 
-    /**
-     * @var $MODEL_NAME$Repository
-     */
-    protected $$MODEL_NAME_CAMEL$Repo;
+    /** @var $MODEL_NAME$Repository */
+    protected $$MODEL_NAME_CAMEL$Repository;
 
     public function setUp() : void
     {

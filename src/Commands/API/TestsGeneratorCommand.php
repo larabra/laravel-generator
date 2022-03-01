@@ -1,11 +1,11 @@
 <?php
 
-namespace InfyOm\Generator\Commands\API;
+namespace Larabra\Generator\Commands\API;
 
-use InfyOm\Generator\Commands\BaseCommand;
-use InfyOm\Generator\Common\CommandData;
-use InfyOm\Generator\Generators\API\APITestGenerator;
-use InfyOm\Generator\Generators\RepositoryTestGenerator;
+use Larabra\Generator\Commands\BaseCommand;
+use Larabra\Generator\Common\CommandData;
+use Larabra\Generator\Generators\API\APITestGenerator;
+use Larabra\Generator\Generators\RepositoryTestGenerator;
 
 class TestsGeneratorCommand extends BaseCommand
 {
@@ -14,7 +14,7 @@ class TestsGeneratorCommand extends BaseCommand
      *
      * @var string
      */
-    protected $name = 'infyom.api:tests';
+    protected $name = 'larabra.api:tests';
 
     /**
      * The console command description.
