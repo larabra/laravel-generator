@@ -55,11 +55,5 @@
                 "\\Larabra\\Generator\\LarabraGeneratorServiceProvider"
             ]
         }
-    },
-    "funding": [
-        {
-            "type": "opencollective",
-            "url": "https://opencollective.com/infyomlabs"
-        }
-    ]
+    }
 }

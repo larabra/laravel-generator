@@ -3,6 +3,7 @@
 ## 20th Apr 2016
 
 #### New Features
+- Larabra updates ([86143149744158f61f0e2300243733a89de46dd1](https://github.com/larabra/laravel-generator/commit/86143149744158f61f0e2300243733a89de46dd1))
 - Introducing [Laravel Generator Builder](http://labs.infyom.com/laravelgenerator/docs/generator-gui-interface) ([#94](https://github.com/InfyOmLabs/laravel-generator/issues/94))
 - Introducing Support to Generate CRUD with [AdminLTE Templates](http://labs.infyom.com/laravelgenerator/docs/templates/adminlte)
 - Added [Support for DataTable](http://labs.infyom.com/laravelgenerator/docs/options/scaffold-options) in both Bootstrap & AdminLTE Templates ([#50](https://github.com/InfyOmLabs/laravel-generator/issues/50))
